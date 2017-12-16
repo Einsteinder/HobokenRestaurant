@@ -99,7 +99,6 @@ module.exports = function(app, passport) {
             
     //=============find a user to userSearch page==========         
     
-
     app.post('/result',(req,res)=>{
         //======================================
         if(req.user){
@@ -180,11 +179,9 @@ module.exports = function(app, passport) {
 
     //==========view user review=================
 
-
-        }
-
     
         }
+    
     
     // route middleware to ensure user is logged in
     function isLoggedIn(req, res, next) {
