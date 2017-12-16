@@ -6,12 +6,13 @@ const ObjectId = require('mongodb').ObjectId;
 const HashMap = require('hashmap');
 
 async function getReviewsByUserId(userId) {
-    if(userId===undefined) throw "Please provide an restaurantId.";
+    if(userId===undefined) throw "Please provide an userId.";
     const usersCollection=await requiredUsers();
     const theUser=await usersCollection.findOne({_id:ObjectId(userId)});
     const theReviews=theUser.reviews;
     const restaurantsCollection=await requiredRestaurant();
-    if(!theUser || theUser===null) throw "No restaurant with that restaurantId.";
+    if(!theUser || theUser===null) throw "No user with that userId.";
+    if(!theReviews || theReviews===null) return null;
     const result=[];
     for(let i=0;i<theReviews.length;i++){
         var theRestaurant=await restaurantsCollection.findOne({_id:ObjectId(theReviews[i].restaurantID)});
@@ -87,6 +88,15 @@ async function addRatingForAll() {
     }
     return resultsList; 
 }
+
+//filter: sort rating for all restaurants
+async function getRating() {
+   const all=await addRatingForAll();
+   return all.sort( function(a, b){   
+        return parseFloat(a["R_averageaLike" ]) < parseFloat(b["R_averageaLike" ]) ? 1 : parseFloat(a[ "R_averageaLike"]) == parseFloat(b[ "R_averageaLike" ]) ? 0 : -1;   
+    });  
+}
+
 async function addRatingForPopular() {
     const restaurantsCollection=await requiredRestaurant();
     const allRestaurants=await restaurantsCollection.find({}).toArray();
@@ -114,12 +124,6 @@ async function getRatingForPopular() {
         return parseFloat(a["R_averageaLike" ]) < parseFloat(b["R_averageaLike" ]) ? 1 : parseFloat(a[ "R_averageaLike"]) == parseFloat(b[ "R_averageaLike" ]) ? 0 : -1;   
     });  
 }
-async function getRating() {
-    const all=await addRatingForAll();
-    return all.sort( function(a, b){   
-         return parseFloat(a["R_averageaLike" ]) < parseFloat(b["R_averageaLike" ]) ? 1 : parseFloat(a[ "R_averageaLike"]) == parseFloat(b[ "R_averageaLike" ]) ? 0 : -1;   
-     });  
- }
 
 //filter: get the restaurant by cuisine
 async function classifyCuisines(){
@@ -318,4 +322,4 @@ async function deleteReview(id){
     return "{delete review:true}";
 }
 
-module.exports={getReviewsByUserId,addRatingForAll,addRatingForPopular,getRatingForPopular,getRating,getReviewsByRestaurantId,getReviewByreviewId,getSandwiches,getCoffeeAndTea,getItalian,getBranch,getAmerican,getChinese,getDelis,getPizza,getBars,getAverageLike,classifyCuisines,gatherCuisines,mappingCuisines,addReview,updateReview,deleteReview};
+module.exports={getReviewsByUserId,getRatingForPopular,addRatingForPopular,addRatingForAll,getRating,getReviewsByRestaurantId,getReviewByreviewId,getSandwiches,getCoffeeAndTea,getItalian,getBranch,getAmerican,getChinese,getDelis,getPizza,getBars,getAverageLike,classifyCuisines,gatherCuisines,mappingCuisines,addReview,updateReview,deleteReview};

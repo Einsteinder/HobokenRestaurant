@@ -52,7 +52,7 @@ router.get("/rating", async (req,res)=>{
 
 router.get("/nearby", async (req,res)=>{
     try{
-        const theRestaurants=await reviewsData.getRatingForPopular();
+        const theRestaurants=await reviewsData.addRatingForPopular();
         res.render('../views/restaurants/nearby', {
             theRestaurants:theRestaurants
         });
