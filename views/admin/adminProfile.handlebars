@@ -1,0 +1,32 @@
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Search</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../public/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../public/css/search.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <p>Hello!</p>
+    <div class="container">
+
+      <form class="form-signin" action="/result" method="post">
+        <li><a style="font-size:20px;color:aliceblue" href="../profile">My Profile</a></li>     
+        <li><a style="font-size:20px;color:aliceblue" href="deletereviews">Delete Reviews</a></li>  
+        <li><a style="font-size:20px;color:aliceblue" href="userList">Show All Users</a></li> 
+        <input type="username" name="keyword" placeholder="provide the user you want to search" id="searchname" class="form-control"  value="{{searchname}}">
+        <button type="submit" style="color:azure；width:100px"  class="btn btn-primary btn-lg btn-block" >search</button>
+      </form>
+    </div>
+    
+
+  </body>
+

@@ -1,0 +1,31 @@
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>User list</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../public/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../public/css/userlist.css" rel="stylesheet">
+
+</head>
+<body>
+    <h1><a style="color:rgb(53, 141, 141)">Here are all users:</a></h1>
+    <div class="list">
+      <table width="90%" height="20%" id="mytab"  border="1" class="t1">
+  <thead>
+    <th style="font-size:20px;color:darkturquoise" width="20%">Id</th>
+    <th style="font-size:20px;color:darkturquoise" width="20%">User Name</th>
+  </thead>
+   {{#each list}}
+     <tr style="font-size:20px;color:darkturquoise" class="a1">
+    <td style="font-size:20px;color:darkturquoise">{{_id}}</td>
+    <td style="font-size:20px;color:darkturquoise">{{email}}</td>
+  </tr>
+    {{/each}}
+</table>
+
+</body>
