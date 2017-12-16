@@ -87,14 +87,39 @@ async function addRatingForAll() {
     }
     return resultsList; 
 }
+async function addRatingForPopular() {
+    const restaurantsCollection=await requiredRestaurant();
+    const allRestaurants=await restaurantsCollection.find({}).toArray();
+    let resultsList=[];
+    for(let i=0;i<10;i++){
+        const averageLike=await getAverageLike(allRestaurants[i]._id);
+        let list=[];
+        let content={
+            _id:allRestaurants[i]._id,
+            R_averageaLike:averageLike,
+            R_cuisine:allRestaurants[i].R_cuisine,
+            R_name:allRestaurants[i].R_name,
+            R_href:allRestaurants[i].R_href,
+            R_location:allRestaurants[i].R_location
+        }
+        resultsList.push(content);     
+    }
+    return resultsList; 
+}
 
 //filter: sort rating for all restaurants
-async function getRating() {
-   const all=await addRatingForAll();
+async function getRatingForPopular() {
+   const all=await addRatingForPopular();
    return all.sort( function(a, b){   
         return parseFloat(a["R_averageaLike" ]) < parseFloat(b["R_averageaLike" ]) ? 1 : parseFloat(a[ "R_averageaLike"]) == parseFloat(b[ "R_averageaLike" ]) ? 0 : -1;   
     });  
 }
+async function getRating() {
+    const all=await addRatingForAll();
+    return all.sort( function(a, b){   
+         return parseFloat(a["R_averageaLike" ]) < parseFloat(b["R_averageaLike" ]) ? 1 : parseFloat(a[ "R_averageaLike"]) == parseFloat(b[ "R_averageaLike" ]) ? 0 : -1;   
+     });  
+ }
 
 //filter: get the restaurant by cuisine
 async function classifyCuisines(){
@@ -293,4 +318,4 @@ async function deleteReview(id){
     return "{delete review:true}";
 }
 
-module.exports={getReviewsByUserId,addRatingForAll,getRating,getReviewsByRestaurantId,getReviewByreviewId,getSandwiches,getCoffeeAndTea,getItalian,getBranch,getAmerican,getChinese,getDelis,getPizza,getBars,getAverageLike,classifyCuisines,gatherCuisines,mappingCuisines,addReview,updateReview,deleteReview};
+module.exports={getReviewsByUserId,addRatingForAll,addRatingForPopular,getRatingForPopular,getRating,getReviewsByRestaurantId,getReviewByreviewId,getSandwiches,getCoffeeAndTea,getItalian,getBranch,getAmerican,getChinese,getDelis,getPizza,getBars,getAverageLike,classifyCuisines,gatherCuisines,mappingCuisines,addReview,updateReview,deleteReview};
