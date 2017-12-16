@@ -29,8 +29,9 @@
        <div id="map_canvas" style="height:600px;width:100%;"> 
         {{#if theRestaurants}} 
           {{#each theRestaurants}}
-            <p id="locationId{{@index}}" >{{this.R_location}}</p>
-            <p id="locationName{{@index}}">{{this.R_name}}</p>
+            <p id="locationId{{@index}}" >{{this.R_location}}</p >
+            <p id="locationName{{@index}}">{{this.R_name}}</p >
+            <p id="id{{@index}}">{{this._id}}</p >
           {{/each}}
             <p id="arrayLength">{{theRestaurants.length}}</p>
         {{/if}}
@@ -40,8 +41,7 @@
       {{>footer}}
     </div>
     
-    
-    <script async defer  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwQhgCXQI5ELmiH6wu-O-MqQN26CQToco&callback"></script>
+    <script async defer  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwQhgCXQI5ELmiH6wu-O-MqQN26CQToco"></script>
     <script src="../../public/js/nearby.js"></script>
    
   </body>

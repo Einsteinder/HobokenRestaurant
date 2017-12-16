@@ -45,6 +45,7 @@
         <h1><span class="fa fa-anchor"></span> Profile Page</h1>
         <a href="/logout" class="btn btn-default btn-sm">Logout</a>
         <a href="/restaurants" class="btn btn-default btn-sm">Restaurant</a>
+        <a href="/ADM"  class="btn btn-default btn-sm">Administor</a>
     </div>
 
     <div class="row">
@@ -52,7 +53,7 @@
         <!-- LOCAL INFORMATION -->
         <div class="col-sm-6">
             <div class="well">
-                <h3><span class="fa fa-user"></span> Local</h3>
+                <h2><span class="fa fa-user"></span> Local</h2>
 
                 {{#if user.local.email}}
                 <p>
@@ -88,10 +89,11 @@
             {{/each}}
            
         </div>
-      
+         
+         
         {{>footer}} 
     </div> 
-
+   
 
 
 </div>

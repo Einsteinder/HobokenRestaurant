@@ -33,7 +33,7 @@ h2{
 .singleReview{
     padding:20px;
     background-color:white;
-    margin:50px auto;
+    margin:30px auto;
     border-radius: 10px;
     border:2px solid rgba(188, 0, 13, 0.4);   
 }
@@ -49,4 +49,7 @@ h2{
     color: white;
     outline: none;
 }
-
+.addReview{
+    margin-top:20px;
+    margin-bottom:-20px;
+}
