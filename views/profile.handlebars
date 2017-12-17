@@ -59,12 +59,9 @@
                 <p>
                     <strong>id</strong>: {{user._id}}<br>
                     <strong>username</strong>: {{user.local.email}}<br>
-                    <strong>password</strong>: {{user.local.password }}
+                    {{!-- <strong>password</strong>: {{user.local.password }} --}}
                 </p>
-                
-              {{/if}}
-
-
+                {{/if}}
             </div>
         </div>
 
@@ -77,7 +74,6 @@
 
 
         <div class="row">
-            
            {{#each reviews}}
            <div class="well">
                 <div class="singleReview">
@@ -87,12 +83,8 @@
                 </div>
             </div>
             {{/each}}
-           
         </div>
-         
     </div> 
-   
-   
 </div>
 </body>
 </html>
